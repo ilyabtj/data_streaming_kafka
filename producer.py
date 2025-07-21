@@ -4,7 +4,7 @@ import time
 from kafka import KafkaProducer
 from datetime import datetime
 
-# Membuat Kafka producer dengan konfigurasi koneksi dan serializer
+# Ini Kafka producer dengan konfigurasi koneksi dan serializer
 try:
     producer = KafkaProducer(
         bootstrap_servers="localhost:9092",
@@ -29,7 +29,7 @@ while True:
         "timestamp": datetime.utcnow().isoformat(),
     }
 
-    # Mengirimkan data ke topic Kafka
+    # kirim data ke topik kafka
     try:
         producer.send("ilya_iot_sensor_data", value=data)
         print(f"[Produced] {data}")
