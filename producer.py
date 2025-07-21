@@ -19,7 +19,7 @@ device_ids = [f"device_{i}" for i in range(1, 6)]
 
 print("Producer started. Ctrl+C to stop.")
 
-# Loop untuk terus mengirimkan data sensor secara periodik
+# loop akan ngirim trus data sensorik
 while True:
     # Simulasi data sensor
     data = {
