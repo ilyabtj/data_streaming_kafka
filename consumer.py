@@ -29,13 +29,13 @@ try:
     )
     cur = conn.cursor()  # buat objek cursor untuk eksekusi query SQL
 except Exception as e:
-    # Menangani error jika koneksi ke PostgreSQL gagal
+    # Handle error kalo koneksi ke PostgreSQL gagal
     print(f"[ERROR] PostgreSQL connection failed: {e}")
     exit(1)
 
 print("Ilya's Consumer started. Listening...")
 
-# Loop untuk memproses setiap pesan Kafka
+# Loop buat memproses setiap pesan Kafka
 for msg in consumer:
     try:
         data = msg.value  # Ngambil isi pesan Kafka sebagai dict
@@ -52,11 +52,11 @@ for msg in consumer:
         )
         metadata = cur.fetchone()  # Ambil satu baris hasil query
 
-        # Jika metadata ditemukan, assign ke variabel terkait
+        # kalo meta datanya ada, assign ke variabel terkait
         if metadata:
             device_name, location, manufacturer = metadata
         else:
-            # Jika tidak ditemukan, gunakan fallback "Tidak Dikenal"
+            # kalo gk ketemu, pake fallback "Tidak Dikenal"
             device_name = location = manufacturer = "Tidak Dikenal"
 
         # Simpan data sensor + metadata ke dalam tabel PostgreSQL
@@ -77,7 +77,7 @@ for msg in consumer:
                 manufacturer,
             ),
         )
-        conn.commit()  # Commit transaksi untuk simpan ke database
+        conn.commit()  # commit buat simpen ke database
         print(f"[Stored] {device_id} @ {data['timestamp']}")  # Log berhasil simpan
 
     except Exception as e:
